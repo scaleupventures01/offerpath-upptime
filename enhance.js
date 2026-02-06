@@ -11,27 +11,92 @@
       return;
     }
 
-    /* 1. Stats summary row */
+    /* 1. Compute aggregate stats — account for degraded + down */
     var totalUp = 0, totalResp = 0, count = articles.length;
+    var downCount = 0, degradedCount = 0;
     articles.forEach(function(a){
       var spans = a.querySelectorAll('.data');
       if(spans[0]){ var v = parseFloat(spans[0].textContent); if(!isNaN(v)) totalUp += v; }
       if(spans[1]){ var m = parseInt(spans[1].textContent); if(!isNaN(m)) totalResp += m; }
+      if(a.classList.contains('down')) downCount++;
+      if(a.classList.contains('degraded')) degradedCount++;
     });
-    var avgUp = (totalUp / count).toFixed(2);
+    var avgUp = totalUp / count;
     var avgResp = Math.round(totalResp / count);
-    var banner = document.querySelector('main article.up:not(.link)');
-    if(banner && !document.querySelector('.stats-row')){
-      var row = document.createElement('div');
-      row.className = 'stats-row';
-      row.innerHTML =
-        '<div class="stat-card"><div class="stat-label">Overall Uptime</div><div class="stat-value green">' + avgUp + '%</div></div>' +
-        '<div class="stat-card"><div class="stat-label">Monitored Services</div><div class="stat-value">' + count + '</div></div>' +
-        '<div class="stat-card"><div class="stat-label">Avg Response Time</div><div class="stat-value">' + avgResp + 'ms</div></div>';
-      banner.after(row);
+
+    /* Penalize: degraded services count as 99.5% each in the aggregate */
+    if(degradedCount > 0 && avgUp >= 100){
+      avgUp = ((count - degradedCount) * 100 + degradedCount * 99.5) / count;
+    }
+    /* Down services already show <100% from Upptime, but floor at 0 */
+    avgUp = Math.max(0, avgUp);
+    var avgUpStr = avgUp.toFixed(2);
+
+    /* Status label */
+    var statusColor, statusLabel;
+    if(downCount > 0){
+      statusColor = '#ef4444';
+      statusLabel = downCount === 1 ? '1 Service Down' : downCount + ' Services Down';
+    } else if(degradedCount > 0){
+      statusColor = '#f59e0b';
+      statusLabel = degradedCount === 1 ? '1 Service Degraded' : degradedCount + ' Services Degraded';
+    } else {
+      statusColor = '#10b981';
+      statusLabel = 'All Systems Operational';
     }
 
-    /* 2. Shorten stat labels */
+    var ringDeg = (parseFloat(avgUpStr) * 3.6).toFixed(1);
+
+    /* 2. Overall uptime hero — inject at the very top of <main>, BEFORE everything */
+    var main = document.querySelector('main.container') || document.querySelector('main');
+    if(main && !document.querySelector('.ofp-overall-hero')){
+      var hero = document.createElement('div');
+      hero.className = 'ofp-overall-hero';
+      hero.innerHTML =
+        '<div class="ofp-hero-inner">' +
+          '<div class="ofp-hero-ring" style="background:conic-gradient(' + statusColor + ' ' + ringDeg + 'deg, #f3f4f6 0)">' +
+            '<div class="ofp-hero-pct">' + avgUpStr + '%</div>' +
+          '</div>' +
+          '<div class="ofp-hero-meta">' +
+            '<div class="ofp-hero-label">Overall Uptime</div>' +
+            '<div class="ofp-hero-status" style="color:' + statusColor + '">' + statusLabel + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="ofp-hero-chips">' +
+          '<div class="ofp-chip"><span class="ofp-chip-num">' + count + '</span> Services Monitored</div>' +
+          '<div class="ofp-chip"><span class="ofp-chip-num">' + avgResp + 'ms</span> Avg Response</div>' +
+          (downCount > 0 ? '<div class="ofp-chip ofp-chip-alert"><span class="ofp-chip-num">' + downCount + '</span> Down</div>' : '') +
+          (degradedCount > 0 ? '<div class="ofp-chip ofp-chip-warn"><span class="ofp-chip-num">' + degradedCount + '</span> Degraded</div>' : '') +
+        '</div>';
+      main.insertBefore(hero, main.firstChild);
+
+      /* Inject hero styles */
+      var style = document.createElement('style');
+      style.textContent =
+        '.ofp-overall-hero{background:white;border:1px solid #e5e7eb;border-radius:16px;padding:2rem 2.5rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-align:center;}' +
+        '.ofp-hero-inner{display:flex;align-items:center;justify-content:center;gap:1.75rem;margin-bottom:1.25rem;}' +
+        '.ofp-hero-ring{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;}' +
+        '.ofp-hero-ring::after{content:"";position:absolute;inset:8px;border-radius:50%;background:white;}' +
+        '.ofp-hero-pct{position:relative;z-index:1;font-size:1.5rem;font-weight:800;color:#111827;letter-spacing:-0.03em;}' +
+        '.ofp-hero-meta{text-align:left;}' +
+        '.ofp-hero-label{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:#9ca3af;font-weight:600;margin-bottom:0.25rem;}' +
+        '.ofp-hero-status{font-size:1.35rem;font-weight:700;letter-spacing:-0.02em;}' +
+        '.ofp-hero-chips{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}' +
+        '.ofp-chip{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:0.5rem 1rem;font-size:0.85rem;color:#6b7280;font-weight:500;}' +
+        '.ofp-chip-num{font-weight:700;color:#111827;margin-right:4px;}' +
+        '.ofp-chip-alert{background:#fef2f2;border-color:#fecaca;color:#991b1b;}' +
+        '.ofp-chip-alert .ofp-chip-num{color:#ef4444;}' +
+        '.ofp-chip-warn{background:#fffbeb;border-color:#fde68a;color:#92400e;}' +
+        '.ofp-chip-warn .ofp-chip-num{color:#f59e0b;}' +
+        '@media(max-width:768px){.ofp-overall-hero{padding:1.25rem;}.ofp-hero-inner{flex-direction:column;gap:1rem;}.ofp-hero-meta{text-align:center;}.ofp-hero-ring{width:90px;height:90px;}.ofp-hero-pct{font-size:1.25rem;}.ofp-hero-status{font-size:1.1rem;}}';
+      document.head.appendChild(style);
+    }
+
+    /* 3. Hide the default "All Systems Operational" banner since hero replaces it */
+    var banner = document.querySelector('main > article.up:not(.link)');
+    if(banner) banner.style.display = 'none';
+
+    /* 4. Shorten stat labels */
     articles.forEach(function(a){
       var divs = a.querySelectorAll(':scope > div');
       divs.forEach(function(d){
@@ -44,7 +109,7 @@
       });
     });
 
-    /* 3. Add uptime bars to service cards */
+    /* 5. Add uptime bars to service cards */
     articles.forEach(function(a){
       if(a.querySelector('.uptime-bar')) return;
       var spans = a.querySelectorAll('.data');
