@@ -58,7 +58,6 @@
         bar.appendChild(seg);
       }
       a.appendChild(bar);
-      a.style.gridTemplateColumns = '1fr auto auto auto';
     });
   }
 
