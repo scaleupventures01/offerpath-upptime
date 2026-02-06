@@ -22,8 +22,9 @@
     });
     var avgUp = (totalUp / count).toFixed(2);
     var avgResp = Math.round(totalResp / count);
+    var ringDeg = (parseFloat(avgUp) * 3.6).toFixed(1);
 
-    /* 2. Overall uptime hero — inject at the very top of <main> */
+    /* 2. Overall uptime hero — inject at the very top of <main>, BEFORE everything */
     var main = document.querySelector('main.container') || document.querySelector('main');
     if(main && !document.querySelector('.ofp-overall-hero')){
       var statusColor = allUp ? '#10b981' : (parseFloat(avgUp) >= 99 ? '#f59e0b' : '#ef4444');
@@ -32,7 +33,7 @@
       hero.className = 'ofp-overall-hero';
       hero.innerHTML =
         '<div class="ofp-hero-inner">' +
-          '<div class="ofp-hero-ring" style="--ring-color:' + statusColor + '">' +
+          '<div class="ofp-hero-ring" style="background:conic-gradient(' + statusColor + ' ' + ringDeg + 'deg, #f3f4f6 0)">' +
             '<div class="ofp-hero-pct">' + avgUp + '%</div>' +
           '</div>' +
           '<div class="ofp-hero-meta">' +
@@ -51,7 +52,7 @@
       style.textContent =
         '.ofp-overall-hero{background:white;border:1px solid #e5e7eb;border-radius:16px;padding:2rem 2.5rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-align:center;}' +
         '.ofp-hero-inner{display:flex;align-items:center;justify-content:center;gap:1.75rem;margin-bottom:1.25rem;}' +
-        '.ofp-hero-ring{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:conic-gradient(var(--ring-color) calc(' + avgUp + ' * 3.6deg),#f3f4f6 0);flex-shrink:0;position:relative;}' +
+        '.ofp-hero-ring{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;}' +
         '.ofp-hero-ring::after{content:"";position:absolute;inset:8px;border-radius:50%;background:white;}' +
         '.ofp-hero-pct{position:relative;z-index:1;font-size:1.5rem;font-weight:800;color:#111827;letter-spacing:-0.03em;}' +
         '.ofp-hero-meta{text-align:left;}' +
@@ -64,17 +65,9 @@
       document.head.appendChild(style);
     }
 
-    /* 3. Stats summary row (below the banner) */
-    var banner = document.querySelector('main article.up:not(.link)');
-    if(banner && !document.querySelector('.stats-row')){
-      var row = document.createElement('div');
-      row.className = 'stats-row';
-      row.innerHTML =
-        '<div class="stat-card"><div class="stat-label">Overall Uptime</div><div class="stat-value green">' + avgUp + '%</div></div>' +
-        '<div class="stat-card"><div class="stat-label">Monitored Services</div><div class="stat-value">' + count + '</div></div>' +
-        '<div class="stat-card"><div class="stat-label">Avg Response Time</div><div class="stat-value">' + avgResp + 'ms</div></div>';
-      banner.after(row);
-    }
+    /* 3. Hide the default "All Systems Operational" banner since hero replaces it */
+    var banner = document.querySelector('main > article.up:not(.link)');
+    if(banner) banner.style.display = 'none';
 
     /* 4. Shorten stat labels */
     articles.forEach(function(a){
