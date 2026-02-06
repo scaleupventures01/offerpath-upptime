@@ -160,6 +160,394 @@ status-website:
       href: https://www.offerpath.co
     - title: GitHub
       href: https://github.com/$OWNER/$REPO
+  css: |
+    /* ========================================
+       OfferPath Status Page - Professional Theme
+       ======================================== */
+
+    /* --- Brand Colors --- */
+    :root {
+      --op-primary: #2563eb;
+      --op-primary-hover: #1d4ed8;
+      --op-success: #10b981;
+      --op-success-light: #d1fae5;
+      --op-warning: #f59e0b;
+      --op-error: #ef4444;
+      --op-gray-50: #f9fafb;
+      --op-gray-100: #f3f4f6;
+      --op-gray-200: #e5e7eb;
+      --op-gray-300: #d1d5db;
+      --op-gray-700: #374151;
+      --op-gray-900: #111827;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* --- Global Improvements --- */
+    body {
+      background-color: var(--op-gray-50);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--op-gray-900);
+    }
+
+    /* --- Header/Navigation --- */
+    header {
+      background-color: white;
+      border-bottom: 1px solid var(--op-gray-200);
+      box-shadow: var(--shadow-sm);
+    }
+
+    header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    nav a {
+      color: var(--op-gray-700);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--op-primary);
+      text-decoration: none;
+    }
+
+    /* --- Main Container --- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* --- Title Section --- */
+    h1.title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--op-gray-900);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+    }
+
+    .description {
+      font-size: 1.125rem;
+      color: var(--op-gray-700);
+      margin-bottom: 2rem;
+    }
+
+    /* --- Incident Section --- */
+    .incidents {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--op-gray-200);
+    }
+
+    .incidents h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--op-gray-900);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .incidents h2::before {
+      content: "⚠️";
+      font-size: 1.25rem;
+    }
+
+    /* --- Live Status Section --- */
+    .live-status {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--op-gray-200);
+    }
+
+    .live-status h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--op-gray-900);
+      margin-bottom: 1.5rem;
+    }
+
+    /* --- Time Range Selector (24h, 7d, etc.) --- */
+    .filter-button,
+    button[class*="filter"],
+    a[class*="filter"] {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem 0.5rem 0;
+      background: var(--op-gray-100);
+      border: 1px solid var(--op-gray-300);
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--op-gray-700);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .filter-button:hover,
+    button[class*="filter"]:hover,
+    a[class*="filter"]:hover {
+      background: var(--op-gray-200);
+      border-color: var(--op-gray-400);
+      color: var(--op-gray-900);
+    }
+
+    .filter-button.active,
+    button[class*="filter"].active,
+    a[class*="filter"].active {
+      background: var(--op-primary);
+      border-color: var(--op-primary);
+      color: white;
+    }
+
+    /* --- Service List Improvements --- */
+    .service,
+    .monitor,
+    div[class*="service"],
+    div[class*="monitor"] {
+      background: white;
+      border: 1px solid var(--op-gray-200);
+      border-radius: 0.75rem;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .service:hover,
+    .monitor:hover,
+    div[class*="service"]:hover,
+    div[class*="monitor"]:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--op-gray-300);
+      transform: translateY(-1px);
+    }
+
+    /* --- Service Name & Details --- */
+    .service h3,
+    .monitor h3,
+    .service a,
+    .monitor a {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--op-gray-900);
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .service a:hover,
+    .monitor a:hover {
+      color: var(--op-primary);
+    }
+
+    /* Add status indicator dot before service name */
+    .service h3::before,
+    .monitor h3::before,
+    .service a::before,
+    .monitor a::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: var(--op-success);
+      border-radius: 50%;
+      margin-right: 0.25rem;
+      box-shadow: 0 0 0 3px var(--op-success-light);
+    }
+
+    /* --- Uptime & Response Time Stats --- */
+    .service p,
+    .monitor p,
+    .service div,
+    .monitor div {
+      font-size: 0.875rem;
+      color: var(--op-gray-700);
+      margin: 0.25rem 0;
+    }
+
+    .service strong,
+    .monitor strong {
+      font-weight: 600;
+      color: var(--op-gray-900);
+    }
+
+    /* --- Uptime Graph/Chart Styling --- */
+    .uptime-graph,
+    svg[class*="graph"],
+    svg[class*="chart"],
+    .service svg,
+    .monitor svg {
+      min-width: 200px;
+      height: 60px;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    /* Make uptime bars more visible */
+    svg rect,
+    svg path {
+      rx: 2;
+      ry: 2;
+    }
+
+    svg rect[fill*="green"],
+    svg rect[fill*="#00"],
+    svg path[fill*="green"] {
+      fill: var(--op-success);
+      opacity: 0.9;
+    }
+
+    svg rect[fill*="red"],
+    svg path[fill*="red"] {
+      fill: var(--op-error);
+      opacity: 0.9;
+    }
+
+    svg rect[fill*="yellow"],
+    svg path[fill*="yellow"] {
+      fill: var(--op-warning);
+      opacity: 0.9;
+    }
+
+    /* --- Service Grouping --- */
+    .services-list::before {
+      content: "Public Pages & Tools";
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--op-gray-700);
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--op-gray-200);
+    }
+
+    /* Target API services for grouping */
+    .service:nth-child(n+30)::before,
+    .monitor:nth-child(n+30)::before {
+      content: "API Services";
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--op-gray-700);
+      margin: 2rem 0 -1rem -1.5rem;
+      padding: 0 0 0.5rem 1.5rem;
+      border-bottom: 2px solid var(--op-gray-200);
+      width: calc(100% + 3rem);
+    }
+
+    /* --- Overall Status Banner --- */
+    .status-banner {
+      background: linear-gradient(135deg, var(--op-success) 0%, #059669 100%);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 0.75rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .status-banner::before {
+      content: "✓";
+      font-size: 1.5rem;
+      font-weight: bold;
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* --- Footer --- */
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--op-gray-200);
+      text-align: center;
+      color: var(--op-gray-700);
+      font-size: 0.875rem;
+    }
+
+    footer a {
+      color: var(--op-primary);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Responsive Design --- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.5rem 1rem;
+      }
+
+      h1.title {
+        font-size: 1.75rem;
+      }
+
+      .service,
+      .monitor,
+      div[class*="service"],
+      div[class*="monitor"] {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .uptime-graph,
+      svg[class*="graph"] {
+        width: 100%;
+        min-width: unset;
+      }
+    }
+
+    /* --- Performance: GPU Acceleration --- */
+    .service,
+    .monitor,
+    .filter-button {
+      will-change: transform;
+    }
+
+    /* --- Accessibility Improvements --- */
+    a:focus,
+    button:focus {
+      outline: 2px solid var(--op-primary);
+      outline-offset: 2px;
+    }
+
+    /* --- Loading States --- */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .loading {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
 
 workflowSchedule:
   uptime: "*/5 * * * *"
