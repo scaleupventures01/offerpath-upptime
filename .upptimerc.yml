@@ -1,100 +1,108 @@
 owner: scaleupventures01
 repo: offerpath-upptime
-
 sites:
-  # --- Public Pages ---
   - name: Homepage
     url: https://www.offerpath.co
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: Get Started
   - name: About
     url: https://www.offerpath.co/about
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: Mission
   - name: Calculator
     url: https://www.offerpath.co/calculator
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: Calculate
   - name: Cancellation
     url: https://www.offerpath.co/cancellation
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Church Board
     url: https://www.offerpath.co/church-board
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Enterprise
     url: https://www.offerpath.co/enterprise
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: FAQ
     url: https://www.offerpath.co/faq
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: Frequently Asked
   - name: For Designers
     url: https://www.offerpath.co/for-designers
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: For Engineers
     url: https://www.offerpath.co/for-engineers
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: For Product Managers
     url: https://www.offerpath.co/for-product-managers
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: For Visa Holders
     url: https://www.offerpath.co/for-visa-holders
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Glossary
     url: https://www.offerpath.co/glossary
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Insights
     url: https://www.offerpath.co/insights
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Jobs
     url: https://www.offerpath.co/jobs
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: Job
   - name: LinkedIn Optimization
     url: https://www.offerpath.co/linkedin-optimization
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Login
     url: https://www.offerpath.co/login
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Partners
     url: https://www.offerpath.co/partners
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Pricing
     url: https://www.offerpath.co/pricing
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: Starter
   - name: Privacy Policy
     url: https://www.offerpath.co/privacy
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Resources
     url: https://www.offerpath.co/resources
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Salary Discovery
     url: https://www.offerpath.co/salary-discovery
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: ScaleJobs
     url: https://www.offerpath.co/scalejobs
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Schedule
     url: https://www.offerpath.co/schedule
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: Schedule
   - name: Sign Up
     url: https://www.offerpath.co/signup
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: Success Stories
     url: https://www.offerpath.co/success-stories
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: Stories
   - name: Terms of Service
     url: https://www.offerpath.co/terms
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
   - name: "Tool: ATS Checker"
     url: https://www.offerpath.co/tools/ats-checker
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: Resume
   - name: "Tool: Cover Letter"
     url: https://www.offerpath.co/tools/cover-letter
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: Cover Letter
   - name: "Tool: LinkedIn Analyzer"
     url: https://www.offerpath.co/tools/linkedin-analyzer
-    __dangerous__body_down_if_text_missing: "OfferPath"
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: LinkedIn
   - name: "Tool: Salary Calculator"
     url: https://www.offerpath.co/tools/salary
-    __dangerous__body_down_if_text_missing: "OfferPath"
-
-  # --- API Endpoints (GET-capable) ---
+    __dangerous__body_down_if_text_missing: OfferPath
+    __dangerous__body_degraded_if_text_missing: Salary
   - name: Payment Verification
     url: https://www.offerpath.co/api/verify-checkout-session
     expectedStatusCodes:
@@ -113,8 +121,6 @@ sites:
       - 400
       - 401
       - 500
-
-  # --- API Endpoints (POST-only, monitored via GET -> 405) ---
   - name: Checkout Service
     url: https://www.offerpath.co/api/create-checkout-session
     expectedStatusCodes:
@@ -147,7 +153,6 @@ sites:
     url: https://www.offerpath.co/api/va/verify-token
     expectedStatusCodes:
       - 405
-
 status-website:
   cname: status.offerpath.co
   logoUrl: https://www.offerpath.co/offerpath-logo.jpg
@@ -220,10 +225,9 @@ status-website:
     footer a { color: var(--op-blue) !important; }
     /* Mobile */
     @media (max-width: 768px) { main.container { padding: 1rem !important; } article.graph { background-size: 120px 40px !important; } }
-
 workflowSchedule:
   uptime: "*/5 * * * *"
-  graphs: "0 0 * * *"
-  responseTime: "0 */6 * * *"
-  staticSite: "0 1 * * *"
-  summary: "0 0 * * *"
+  graphs: 0 0 * * *
+  responseTime: 0 */6 * * *
+  staticSite: 0 1 * * *
+  summary: 0 0 * * *
