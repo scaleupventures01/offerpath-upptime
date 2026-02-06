@@ -82,8 +82,28 @@
           (downCount > 0 ? '<div class="ofp-chip ofp-chip-alert"><span class="ofp-chip-num">' + downCount + '</span> Down</div>' : '') +
           (degradedCount > 0 ? '<div class="ofp-chip ofp-chip-warn"><span class="ofp-chip-num">' + degradedCount + '</span> Degraded</div>' : '') +
         '</div>' +
-        '<div class="ofp-hero-sub">Real-time monitoring \u00b7 Checks every 5 minutes</div>';
+        '<div class="ofp-hero-sub" id="ofp-last-check">Real-time monitoring \u00b7 Checks every 5 minutes</div>';
       main.insertBefore(hero, main.firstChild);
+
+      /* Fetch last uptime check time from GitHub Actions */
+      fetch('https://api.github.com/repos/scaleupventures01/offerpath-upptime/actions/workflows/uptime.yml/runs?per_page=1&status=completed')
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          if(d.workflow_runs && d.workflow_runs[0]){
+            var dt = new Date(d.workflow_runs[0].updated_at);
+            var now = new Date();
+            var diffMs = now - dt;
+            var diffMin = Math.round(diffMs / 60000);
+            var timeAgo;
+            if(diffMin < 1) timeAgo = 'just now';
+            else if(diffMin === 1) timeAgo = '1 min ago';
+            else if(diffMin < 60) timeAgo = diffMin + ' min ago';
+            else { var h = Math.round(diffMin / 60); timeAgo = h === 1 ? '1 hour ago' : h + ' hours ago'; }
+            var el = document.getElementById('ofp-last-check');
+            if(el) el.textContent = 'Last checked ' + timeAgo + ' \u00b7 Checks every 5 minutes';
+          }
+        })
+        .catch(function(){});
 
       /* Inject hero styles */
       var style = document.createElement('style');
