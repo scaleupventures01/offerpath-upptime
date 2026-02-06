@@ -166,62 +166,69 @@ status-website:
     - title: GitHub
       href: https://github.com/$OWNER/$REPO
   css: |
-    :root { --op-blue: #2563eb; --op-green: #10b981; --op-green-light: #d1fae5; --op-red: #ef4444; --op-yellow: #f59e0b; --op-g50: #f9fafb; --op-g100: #f3f4f6; --op-g200: #e5e7eb; --op-g300: #d1d5db; --op-g500: #6b7280; --op-g700: #374151; --op-g900: #111827; }
-    body { background: var(--op-g50) !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important; color: var(--op-g900) !important; }
+    :root { --op-blue: #2563eb; --op-green: #10b981; --op-green-light: #d1fae5; --op-green-bg: #ecfdf5; --op-red: #ef4444; --op-yellow: #f59e0b; --op-g50: #f9fafb; --op-g100: #f3f4f6; --op-g200: #e5e7eb; --op-g300: #d1d5db; --op-g400: #9ca3af; --op-g500: #6b7280; --op-g700: #374151; --op-g800: #1f2937; --op-g900: #111827; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 4px rgba(16,185,129,0.25); } 50% { box-shadow: 0 0 0 8px rgba(16,185,129,0.08); } }
+    body { background: var(--op-g50) !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important; color: var(--op-g900) !important; -webkit-font-smoothing: antialiased !important; }
     /* Nav */
-    nav { background: white !important; border-bottom: 1px solid var(--op-g200) !important; box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important; }
+    nav { background: white !important; border-bottom: 1px solid var(--op-g200) !important; box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important; position: sticky !important; top: 0 !important; z-index: 100 !important; }
     nav .logo img { height: 28px !important; border-radius: 6px !important; }
-    nav .logo div { font-weight: 700 !important; font-size: 1.1rem !important; color: var(--op-g900) !important; }
+    nav .logo div { font-weight: 700 !important; font-size: 1.05rem !important; color: var(--op-g900) !important; letter-spacing: -0.01em !important; }
     nav ul { display: flex !important; gap: 1.25rem !important; }
-    nav ul a { color: var(--op-g700) !important; font-weight: 500 !important; font-size: 0.9rem !important; }
+    nav ul a { color: var(--op-g500) !important; font-weight: 500 !important; font-size: 0.875rem !important; }
     nav ul a:hover { color: var(--op-blue) !important; }
     /* Main */
-    main.container { max-width: 900px !important; margin: 0 auto !important; padding: 2rem 1.5rem !important; }
-    main h1 { font-size: 2rem !important; font-weight: 700 !important; color: var(--op-g900) !important; margin-bottom: 0.25rem !important; }
-    main .lead { font-size: 1rem !important; color: var(--op-g500) !important; margin-bottom: 1.5rem !important; }
-    main .lead a { color: var(--op-blue) !important; }
+    main.container { max-width: 920px !important; margin: 0 auto !important; padding: 2rem 1.5rem 4rem !important; }
+    /* Header */
+    main h1 { font-size: 2rem !important; font-weight: 700 !important; color: var(--op-g900) !important; letter-spacing: -0.025em !important; margin-bottom: 0.35rem !important; }
+    main .lead { font-size: 0.95rem !important; color: var(--op-g500) !important; margin-bottom: 1.75rem !important; }
+    main .lead a { color: var(--op-blue) !important; text-decoration: none !important; }
+    /* All Systems Operational banner */
+    main > article.up:not(.link) { background: var(--op-green-bg) !important; border: 1px solid #a7f3d0 !important; border-radius: 12px !important; padding: 1.1rem 1.5rem !important; font-weight: 600 !important; color: #065f46 !important; font-size: 1rem !important; margin-bottom: 2rem !important; box-shadow: none !important; display: flex !important; align-items: center !important; gap: 12px !important; }
+    main > article.up:not(.link)::before { content: "" !important; display: inline-block !important; width: 12px !important; height: 12px !important; background: var(--op-green) !important; border-radius: 50% !important; flex-shrink: 0 !important; animation: pulse 2s ease-in-out infinite !important; }
     /* Sections */
-    main > section { background: white !important; border: 1px solid var(--op-g200) !important; border-radius: 10px !important; padding: 1rem 1.25rem !important; margin-bottom: 1rem !important; box-shadow: 0 1px 2px rgba(0,0,0,0.04) !important; }
-    main > section h2 { font-size: 1.15rem !important; font-weight: 600 !important; color: var(--op-g900) !important; margin-bottom: 0.75rem !important; }
-    /* Hide empty sections (Upptime renders empty section elements) */
+    main > section { background: white !important; border: 1px solid var(--op-g200) !important; border-radius: 12px !important; padding: 1.25rem 1.5rem !important; margin-bottom: 1rem !important; box-shadow: 0 1px 2px rgba(0,0,0,0.04) !important; }
+    main > section h2 { font-size: 1.1rem !important; font-weight: 600 !important; color: var(--op-g900) !important; margin-bottom: 0.75rem !important; }
     main > section:empty { display: none !important; }
-    /* Live Status wrapper — the div.f that holds h2 + form */
+    /* Live Status wrapper */
     main > div.f { display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: space-between !important; flex-wrap: wrap !important; gap: 0.75rem !important; margin-bottom: 1rem !important; }
-    main > div.f > h2 { font-size: 1.25rem !important; font-weight: 700 !important; color: var(--op-g900) !important; margin: 0 !important; }
-    /* Time range pills — HORIZONTAL layout */
+    main > div.f > h2 { font-size: 1.1rem !important; font-weight: 600 !important; color: var(--op-g900) !important; margin: 0 !important; }
+    /* Time range pills */
     form.f, form.r, form.f.r { display: flex !important; flex-direction: row !important; flex-wrap: wrap !important; align-items: center !important; gap: 6px !important; margin: 0 !important; padding: 0 !important; }
     form input[type="radio"] { position: absolute !important; opacity: 0 !important; width: 0 !important; height: 0 !important; pointer-events: none !important; }
-    form label { display: inline-flex !important; align-items: center !important; justify-content: center !important; padding: 5px 14px !important; margin: 0 !important; background: white !important; border: 1px solid var(--op-g300) !important; border-radius: 6px !important; font-size: 0.85rem !important; font-weight: 500 !important; color: var(--op-g700) !important; cursor: pointer !important; transition: all 0.15s !important; white-space: nowrap !important; }
-    form label:hover { background: var(--op-g100) !important; border-color: var(--op-g500) !important; }
+    form label { display: inline-flex !important; align-items: center !important; justify-content: center !important; padding: 5px 14px !important; margin: 0 !important; background: var(--op-g100) !important; border: 1px solid var(--op-g200) !important; border-radius: 6px !important; font-size: 0.8rem !important; font-weight: 500 !important; color: var(--op-g700) !important; cursor: pointer !important; transition: all 0.15s !important; white-space: nowrap !important; }
+    form label:hover { background: var(--op-g200) !important; }
     form input[type="radio"]:checked + label { background: var(--op-blue) !important; color: white !important; border-color: var(--op-blue) !important; font-weight: 600 !important; }
-    /* Live status section — no card styling */
+    /* Live status section — transparent */
     .live-status, section.live-status { background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; }
-    /* Service cards — compact */
-    article.up, article.up.link, article.degraded, article.degraded.link { background: white !important; border: 1px solid var(--op-g200) !important; border-radius: 8px !important; padding: 0.85rem 1.1rem !important; margin-bottom: 0.6rem !important; box-shadow: 0 1px 2px rgba(0,0,0,0.03) !important; transition: all 0.15s !important; position: relative !important; overflow: hidden !important; }
-    article.up:hover, article.degraded:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.07) !important; border-color: var(--op-g300) !important; transform: translateY(-1px) !important; }
-    /* Status dots */
-    article.up h4::before { content: "" !important; display: inline-block !important; width: 8px !important; height: 8px !important; background: var(--op-green) !important; border-radius: 50% !important; margin-right: 8px !important; box-shadow: 0 0 0 3px var(--op-green-light) !important; flex-shrink: 0 !important; }
-    article.down h4::before { content: "" !important; display: inline-block !important; width: 8px !important; height: 8px !important; background: var(--op-red) !important; border-radius: 50% !important; margin-right: 8px !important; box-shadow: 0 0 0 3px rgba(239,68,68,0.2) !important; flex-shrink: 0 !important; }
-    article.degraded h4::before { content: "" !important; display: inline-block !important; width: 8px !important; height: 8px !important; background: var(--op-yellow) !important; border-radius: 50% !important; margin-right: 8px !important; box-shadow: 0 0 0 3px rgba(245,158,11,0.2) !important; flex-shrink: 0 !important; }
+    /* Service cards — HORIZONTAL GRID layout */
+    section.live-status article.up, section.live-status article.up.link, section.live-status article.degraded { display: grid !important; grid-template-columns: 1fr auto auto !important; align-items: center !important; gap: 1rem !important; background: white !important; border: 1px solid var(--op-g200) !important; border-radius: 10px !important; padding: 0.7rem 1.1rem !important; margin-bottom: 0.45rem !important; box-shadow: 0 1px 2px rgba(0,0,0,0.04) !important; transition: all 0.15s !important; position: relative !important; overflow: hidden !important; }
+    section.live-status article:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.07) !important; border-color: var(--op-g300) !important; transform: translateY(-1px) !important; }
+    /* Status dots on service cards */
+    section.live-status article.up h4::before { content: "" !important; display: inline-block !important; width: 8px !important; height: 8px !important; background: var(--op-green) !important; border-radius: 50% !important; margin-right: 10px !important; box-shadow: 0 0 0 3px var(--op-green-light) !important; flex-shrink: 0 !important; }
+    section.live-status article.degraded h4::before { content: "" !important; display: inline-block !important; width: 8px !important; height: 8px !important; background: var(--op-yellow) !important; border-radius: 50% !important; margin-right: 10px !important; box-shadow: 0 0 0 3px rgba(245,158,11,0.2) !important; flex-shrink: 0 !important; }
     /* Service name */
-    article h4 { display: flex !important; align-items: center !important; font-size: 0.95rem !important; font-weight: 600 !important; margin: 0 0 4px 0 !important; }
-    article h4 .icon { width: 18px !important; height: 18px !important; border-radius: 3px !important; margin-right: 6px !important; }
-    article h4 a { color: var(--op-g900) !important; text-decoration: none !important; }
-    article h4 a:hover { color: var(--op-blue) !important; }
-    /* Uptime/response stats */
-    article.up > div, article.degraded > div { font-size: 0.8rem !important; color: var(--op-g500) !important; margin: 2px 0 !important; line-height: 1.4 !important; }
-    article .data { font-weight: 600 !important; color: var(--op-g900) !important; }
-    /* Graph background */
-    article.graph { background-image: var(--background) !important; background-size: 200px 50px !important; background-position: right center !important; background-repeat: no-repeat !important; }
+    section.live-status article h4 { display: flex !important; align-items: center !important; font-size: 0.9rem !important; font-weight: 600 !important; margin: 0 !important; }
+    section.live-status article h4 .icon { width: 18px !important; height: 18px !important; border-radius: 3px !important; margin-right: 6px !important; }
+    section.live-status article h4 a { color: var(--op-g900) !important; text-decoration: none !important; }
+    section.live-status article h4 a:hover { color: var(--op-blue) !important; }
+    /* Stats in grid — compact inline */
+    section.live-status article > div { font-size: 0.8rem !important; color: var(--op-g500) !important; margin: 0 !important; white-space: nowrap !important; line-height: 1 !important; }
+    section.live-status article .data { font-weight: 600 !important; color: var(--op-g800) !important; }
+    /* Graph background — prominent right-aligned bar */
+    section.live-status article.graph { background-image: var(--background) !important; background-size: 180px 28px !important; background-position: right center !important; background-repeat: no-repeat !important; }
     /* Down incidents */
     article.down { background: #fef2f2 !important; border: 1px solid #fecaca !important; border-radius: 8px !important; padding: 0.85rem 1.1rem !important; margin-bottom: 0.6rem !important; }
-    article.down h4 { color: var(--op-red) !important; font-weight: 600 !important; }
+    article.down h4 { display: flex !important; align-items: center !important; font-size: 0.9rem !important; font-weight: 600 !important; margin: 0 0 4px 0 !important; }
+    article.down h4::before { content: "" !important; display: inline-block !important; width: 8px !important; height: 8px !important; background: var(--op-red) !important; border-radius: 50% !important; margin-right: 8px !important; box-shadow: 0 0 0 3px rgba(239,68,68,0.2) !important; flex-shrink: 0 !important; }
+    article.down h4 { color: var(--op-red) !important; }
     article.down-resolved { opacity: 0.85 !important; border-left: 3px solid var(--op-g300) !important; }
+    /* Past Incidents section */
+    main > section:last-of-type h3 { font-size: 0.85rem !important; color: var(--op-g400) !important; font-weight: 500 !important; margin-bottom: 0.5rem !important; }
     /* Footer */
-    footer { margin-top: 3rem !important; padding: 1.5rem 0 !important; text-align: center !important; color: var(--op-g500) !important; font-size: 0.85rem !important; border-top: 1px solid var(--op-g200) !important; }
-    footer a { color: var(--op-blue) !important; }
+    footer { margin-top: 3rem !important; padding: 1.5rem 0 !important; text-align: center !important; color: var(--op-g400) !important; font-size: 0.8rem !important; border-top: 1px solid var(--op-g200) !important; }
+    footer a { color: var(--op-blue) !important; text-decoration: none !important; }
     /* Responsive */
-    @media (max-width: 768px) { main.container { padding: 1rem !important; } main > div.f { flex-direction: column !important; align-items: flex-start !important; } article.graph { background-size: 120px 35px !important; } }
+    @media (max-width: 768px) { main.container { padding: 1.25rem 1rem !important; } main > div.f { flex-direction: column !important; align-items: flex-start !important; } section.live-status article.up, section.live-status article.degraded { grid-template-columns: 1fr !important; gap: 0.35rem !important; } section.live-status article.graph { background-size: 100% 20px !important; background-position: bottom center !important; } }
 workflowSchedule:
   uptime: "*/5 * * * *"
   graphs: 0 0 * * *
