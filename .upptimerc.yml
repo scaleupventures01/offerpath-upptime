@@ -2,11 +2,6 @@ owner: scaleupventures01
 repo: offerpath-upptime
 
 sites:
-  # --- TEST: Remove after alerting verification ---
-  - name: "TEST - Should Fail"
-    url: https://www.offerpath.co/this-page-does-not-exist-upptime-test
-    __dangerous__body_down_if_text_missing: "OfferPath"
-
   # --- Public Pages ---
   - name: Homepage
     url: https://www.offerpath.co
