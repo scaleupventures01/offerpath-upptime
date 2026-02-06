@@ -94,6 +94,60 @@ sites:
     url: https://www.offerpath.co/tools/salary
     __dangerous__body_down_if_text_missing: "OfferPath"
 
+  # --- API Endpoints (GET-capable) ---
+  - name: Payment Verification
+    url: https://www.offerpath.co/api/verify-checkout-session
+    expectedStatusCodes:
+      - 200
+      - 400
+  - name: Scheduling Service
+    url: https://www.offerpath.co/api/scheduling/book-slot
+    expectedStatusCodes:
+      - 200
+      - 400
+      - 500
+  - name: VA Availability
+    url: https://www.offerpath.co/api/va/availability
+    expectedStatusCodes:
+      - 200
+      - 400
+      - 401
+      - 500
+
+  # --- API Endpoints (POST-only, monitored via GET -> 405) ---
+  - name: Checkout Service
+    url: https://www.offerpath.co/api/create-checkout-session
+    expectedStatusCodes:
+      - 405
+  - name: Payment Webhooks
+    url: https://www.offerpath.co/api/stripe-webhook
+    expectedStatusCodes:
+      - 405
+  - name: Email Service
+    url: https://www.offerpath.co/api/send-email
+    expectedStatusCodes:
+      - 405
+  - name: SMS Service
+    url: https://www.offerpath.co/api/send-sms
+    expectedStatusCodes:
+      - 405
+  - name: Profile Notifications
+    url: https://www.offerpath.co/api/notify-new-profile
+    expectedStatusCodes:
+      - 405
+  - name: CRM Sync
+    url: https://www.offerpath.co/api/sync-to-attio
+    expectedStatusCodes:
+      - 405
+  - name: VA Magic Link
+    url: https://www.offerpath.co/api/va/send-magic-link
+    expectedStatusCodes:
+      - 405
+  - name: VA Token Verify
+    url: https://www.offerpath.co/api/va/verify-token
+    expectedStatusCodes:
+      - 405
+
 status-website:
   cname: status.offerpath.co
   logoUrl: https://www.offerpath.co/offerpath-logo.jpg
