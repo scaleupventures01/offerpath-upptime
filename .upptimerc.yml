@@ -243,7 +243,7 @@ status-website:
     .uptime-bar .seg.down { background: #ef4444; }
     .uptime-bar .seg.partial { background: #f59e0b; }
   scripts:
-    - src: https://cdn.jsdelivr.net/gh/scaleupventures01/offerpath-upptime@dca04dc/assets/enhance.js
+    - src: https://cdn.jsdelivr.net/gh/scaleupventures01/offerpath-upptime@af1b8c0/assets/enhance.js
 workflowSchedule:
   uptime: "*/5 * * * *"
   graphs: 0 0 * * *
