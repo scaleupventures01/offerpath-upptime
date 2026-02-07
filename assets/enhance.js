@@ -100,7 +100,7 @@
             else if(diffMin < 60) timeAgo = diffMin + ' min ago';
             else { var h = Math.round(diffMin / 60); timeAgo = h === 1 ? '1 hour ago' : h + ' hours ago'; }
             var el = document.getElementById('ofp-last-check');
-            if(el) el.textContent = 'Last checked ' + timeAgo + ' \u00b7 Checks every 5 minutes';
+            if(el) el.textContent = 'Last checked ' + timeAgo;
           }
         })
         .catch(function(){});
